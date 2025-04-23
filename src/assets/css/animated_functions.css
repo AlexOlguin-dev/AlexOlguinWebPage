@@ -3,6 +3,15 @@
   to   { opacity: 1; transform: scale(1); }
 }
 
-.fade‑in {
-  animation: fadeIn .6s ease‑out forwards;   /* 600 ms */
+/* animated_functions.css  (o el archivo de estilos que ya importas) */
+@keyframes floatY {
+  0%   { transform: translateY(  0px); }
+  50%  { transform: translateY(  5px); }  /* baja 5 px */
+  100% { transform: translateY(  0px); }  /* vuelve arriba */
+}
+
+/* clase opcional si prefieres no tocar .gosty existente */
+.floating {
+  animation: floatY 2s ease-in-out infinite;   /* 2 s ida‑vuelta; ajusta a tu gusto */
+  will-change: transform;                      /* ayuda a la GPU */
 }

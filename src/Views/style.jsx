@@ -121,9 +121,9 @@ export const useStyles = makeStyles({
   m_palanca: {
     position: 'absolute',
     left: 800,
-    top: 80,
+    top: 70,
     width: 600,
-    height: 200,
+    height: 230,
     padding: '5px 10px',
     backgroundColor: '#73A4BB',
     color: '#DCEAC4',

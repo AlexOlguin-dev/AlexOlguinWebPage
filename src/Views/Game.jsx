@@ -17,12 +17,11 @@ import QuestionBox from '../assets/img/Map/InfoBox.png';
 import IconoPersonalizado from '../assets/img/Icon.png';
 
 const LEVER_TEXT = `
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa 
-qui officia deserunt mollit anim id est laborum.
+¡Hola! Bienvenidos... Soy Alex Olguín, un desarrollador web con sólida trayectoria en JavaScript, 
+capaz de crear desde sitios livianos hasta plataformas complejas, cubriendo todo el ciclo de vida: 
+análisis, arquitectura, desarrollo full‑stack y despliegue. Este breve portafolio es una muestra de 
+mi habilidad para transformar ideas en soluciones digitales de calidad. Me adapto rápido, aprendo 
+nuevas tecnologías con entusiasmo y colaboro eficazmente para impulsar los objetivos del negocio.
 `;
 
 
@@ -33,13 +32,14 @@ const Game = () => {
   const [isJumping, setIsJumping] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [activatedLever, setActivatedLever] = useState(false);
+  const [showMansionTip, setShowMansionTip] = useState(false);
 
   const velocityYRef = useRef(0);
   const pressedKeys = useRef(new Set());
   const typedText = useTypewriter(activatedLever ? LEVER_TEXT : '', 15); // 15 ms ≈ 65 cps
 
   const GRAVITY = -1;
-  const JUMP_VELOCITY = 30;
+  const JUMP_VELOCITY = 15;
   const FLOOR_Y = 0;
   const MOVE_SPEED = 5;
 
@@ -57,6 +57,13 @@ const Game = () => {
     y: FLOOR_Y + 50,  // Un poco arriba del suelo
     width: 60,
     height: 60,
+  };
+
+  const MANSION_BOX = {
+    x: 1100,          // ajusta según la posición real de tu imagen
+    y: FLOOR_Y, // altura desde el suelo hasta la base de la mansión
+    width: 100,      // ancho aproximado de la mansión
+    height: 300,     // alto aproximado
   };
 
   useEffect(() => {
@@ -120,6 +127,17 @@ const Game = () => {
           newY = platformTop;  // Lo dejamos en la parte superior de la plataforma
           velocityYRef.current = 0;  // Detenemos la caída
           setIsJumping(false);
+        }
+
+        if (
+          charRight > MANSION_BOX.x &&
+          charLeft < MANSION_BOX.x + MANSION_BOX.width &&
+          charBottom <= MANSION_BOX.y + MANSION_BOX.height &&
+          charTop >= MANSION_BOX.y
+        ) {
+          setShowMansionTip(true);
+        } else {
+          setShowMansionTip(false);
         }
   
         // Si no está en la plataforma, sigue cayendo hasta el suelo
@@ -233,8 +251,17 @@ const Game = () => {
           </div>
         )}
 
+        {showMansionTip && (
+          <div className={classes.t_tip} style={{ position: 'absolute', left: 900, bottom: MANSION_BOX.y + MANSION_BOX.height + 20, }}>
+            <img src={EnterLogo} alt="Enter" style={{ width: '80px', height: '80px', marginBottom: '5px' }} />
+            <span style={{ fontSize: 22, fontFamily: "'VT323', monospace" }}>
+              Presiona 'Enter' para entrar a la mansión
+            </span>
+          </div>
+        )}
+
         {/* Personaje */}
-        <img src={GostyImg} alt="Gosty" style={{ position: 'absolute', left: position.x, bottom: position.y + 210 }} className={classes.gosty} />
+        <img src={GostyImg} alt="Gosty" style={{ position: 'absolute', left: position.x, bottom: position.y + 210, zIndex: 9 }} className={`${classes.gosty} floating`} />
         
       </div>
     </div>
