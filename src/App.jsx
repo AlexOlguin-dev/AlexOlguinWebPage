@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Game from './Views/Game';
+import Lobby from './Views/Lobby';
+import './App.css';
 
 function App() {
 
@@ -10,7 +12,12 @@ function App() {
   },[])
 
   return (
-    <Game />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Game />} />
+        <Route path="/lobby" element={<Lobby />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/animated_functions.css';
 import { useStyles } from "./style";
-import TranslateIcon from '@mui/icons-material/Translate';
+import TopBar from './TopBar';
 import GostyImg from '../assets/img/MainCharacter/Gosty.png';
 import FloorImg from '../assets/img/Map/floor.png';
 import Plarform1 from '../assets/img/Map/platform_1.png';
@@ -14,20 +14,19 @@ import Palanca2 from '../assets/img/Map/Palanca2.png';
 import Navegacion from '../assets/img/Map/Navegacion.png';
 import Titulo from '../assets/img/Titulo.png';
 import QuestionBox from '../assets/img/Map/InfoBox.png';
-import IconoPersonalizado from '../assets/img/Icon.png';
 
 const LEVER_TEXT = `
-¡Hola! Bienvenidos... Soy Alex Olguín, un desarrollador web con sólida trayectoria en JavaScript, 
+¡Hola! Bienvenidos... Soy Alex Olguín, un desarrollador web con sólida trayectoria, 
 capaz de crear desde sitios livianos hasta plataformas complejas, cubriendo todo el ciclo de vida: 
 análisis, arquitectura, desarrollo full‑stack y despliegue. Este breve portafolio es una muestra de 
 mi habilidad para transformar ideas en soluciones digitales de calidad. Me adapto rápido, aprendo 
 nuevas tecnologías con entusiasmo y colaboro eficazmente para impulsar los objetivos del negocio.
 `;
 
-
 const Game = () => {
 
   const classes = useStyles();
+  const navigate = useNavigate(); 
   const [position, setPosition] = useState({ x: 100, y: 0 });
   const [isJumping, setIsJumping] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -39,7 +38,7 @@ const Game = () => {
   const typedText = useTypewriter(activatedLever ? LEVER_TEXT : '', 15); // 15 ms ≈ 65 cps
 
   const GRAVITY = -1;
-  const JUMP_VELOCITY = 15;
+  const JUMP_VELOCITY = 30;
   const FLOOR_Y = 0;
   const MOVE_SPEED = 5;
 
@@ -60,10 +59,10 @@ const Game = () => {
   };
 
   const MANSION_BOX = {
-    x: 1100,          // ajusta según la posición real de tu imagen
-    y: FLOOR_Y, // altura desde el suelo hasta la base de la mansión
-    width: 100,      // ancho aproximado de la mansión
-    height: 300,     // alto aproximado
+    x: 1100, // ajusta según la posición real de tu imagen
+    y: 0, // altura desde el suelo hasta la base de la mansión
+    width: 100, // ancho aproximado de la mansión
+    height: 300, // alto aproximado
   };
 
   useEffect(() => {
@@ -73,8 +72,13 @@ const Game = () => {
         velocityYRef.current = JUMP_VELOCITY;
         setIsJumping(true);
       }
+      // Activar palanca
       if (e.key === 'Enter' && !activatedLever && showTooltip) {
         setActivatedLever(true);
+      }
+      // Entrar a la mansión
+      if (e.key === 'Enter' && showMansionTip) {
+        navigate('/lobby');        // <-- redirige
       }
     };
 
@@ -88,7 +92,7 @@ const Game = () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [isJumping, activatedLever, showTooltip]);
+  }, [isJumping, activatedLever, showTooltip, showMansionTip]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -197,14 +201,7 @@ const Game = () => {
     <div className={classes.main_div}>
 
       {/* ============================== NAVBAR =================================== */}
-      <div className={classes.navbar}>
-        <img src={IconoPersonalizado} alt="Icono" style={{ width: '40px', height: '40px', objectFit: 'contain' }}/>
-        <div style={{ width: "100px" }}>
-          <IconButton edge="start" color="inherit" aria-label="translate">
-            <TranslateIcon style={{ color: "#fff" }} />
-          </IconButton>
-        </div>
-      </div>
+      <TopBar />
       {/* ============================== NAVBAR =================================== */}
 
       <div style={{ position: 'relative', width: '100%', height: '800px', backgroundImage: `url(${cielo})`, backgroundSize: 'cover', overflow: 'hidden', zIndex: 1 }}>
