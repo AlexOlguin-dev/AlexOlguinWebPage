@@ -39,11 +39,12 @@ const Lobby = () => {
   const [pos, setPos] = useState({ x: 140, y: 320  });
   const [isJumping, setJump] = useState(false);
   const [isNearDoor, setNearDoor] = useState(false);
+  const [isNearDoor2, setNearDoor2] = useState(false);
   const [activeIcon, setActiveIcon] = useState(null);
 
   /*  ======== constantes físicas ========  */
   const GRAVITY       = -1;
-  const JUMP_VELOCITY = 22;
+  const JUMP_VELOCITY = 30;
   const FLOOR_Y       = 0;
   const MOVE_SPEED    = 5;
 
@@ -55,11 +56,18 @@ const Lobby = () => {
   ];
 
   const DOOR_BOX = { // posición/medidas de la puerta
-      x: 100,        // mismo “left” que <img Puerta>
-      y: 123,        // mismo “top”   que <img Puerta>
-      width: 150,    // idéntico al width de la imagen
-      height: 240,   // alto aproximado de la imagen
-    };
+    x: 100,        // mismo “left” que <img Puerta>
+    y: 123,        // mismo “top”   que <img Puerta>
+    width: 150,    // idéntico al width de la imagen
+    height: 240,   // alto aproximado de la imagen
+  };
+
+  const DOOR_2 = {
+    x: 1300,
+    y: 0,
+    width: 100,
+    height: 100,
+  };
     
   const TOOLTIP_OFFSET = 20;       // separación vertical sobre la puerta
 
@@ -130,6 +138,9 @@ const Lobby = () => {
       if (e.key === 'Enter' && isNearDoor) {
         navigate('/');
       }
+      if (e.key === 'Enter' && isNearDoor2) {
+        navigate('/ocean');
+      }
     };
     const up = (e) => pressedKeys.current.delete(e.key);
 
@@ -139,7 +150,7 @@ const Lobby = () => {
       window.removeEventListener('keydown', down);
       window.removeEventListener('keyup',   up);
     };
-  }, [isJumping,isNearDoor]);
+  }, [isJumping,isNearDoor,isNearDoor2]);
 
   /*  ===== bucle de juego (16 ms ≈ 60 fps) ===== */
   useEffect(() => {
@@ -212,6 +223,20 @@ const Lobby = () => {
 
         setNearDoor(collideDoor);
 
+        // Comprobar proximidad con la puerta 2
+        const door2Left   = DOOR_2.x;
+        const door2Right  = DOOR_2.x + DOOR_2.width;
+        const door2Bottom = DOOR_2.y;
+        const door2Top    = DOOR_2.y + DOOR_2.height;
+
+        const collideDoor2 =
+          charRight > door2Left &&
+          charLeft  < door2Right &&
+          charTop   > door2Bottom &&
+          charBottom < door2Top;
+
+        setNearDoor2(collideDoor2);
+
         // === detectar colisión con iconos ===
         let touchedIcon = null;
         for (const icon of ICONS) {
@@ -247,15 +272,14 @@ const Lobby = () => {
       <div style={{ position: 'relative', width: '100%', height: 800, backgroundImage: `url(${cielo})`, backgroundSize: 'cover', overflow: 'hidden' }}>
 
         {/** TORCHES SEQUENCE */}
-        <img src={Torch} alt="torch1" style={{ position: 'absolute', width: "170px", top: 375, left: 96 }} />
-        <img src={Torch} alt="torch2" style={{ position: 'absolute', width: "170px", top: 375, left: 336 }} />
-        <img src={Torch} alt="torch3" style={{ position: 'absolute', width: "170px", top: 375, left: 570 }} />
-        <img src={Torch} alt="torch4" style={{ position: 'absolute', width: "170px", top: 375, left: 808 }} />
-        <img src={Torch} alt="torch5" style={{ position: 'absolute', width: "170px", top: 375, left: 1048 }} />
-        <img src={Torch} alt="torch6" style={{ position: 'absolute', width: "170px", top: 375, left: 1284 }} />
+        <img src={Torch} alt="torch1" style={{ position: 'absolute', width: "170px", top: 450, left: 50 }} />
+        <img src={Torch} alt="torch1" style={{ position: 'absolute', width: "170px", top: 450, left: 600 }} />
+        <img src={Torch} alt="torch1" style={{ position: 'absolute', width: "170px", top: 450, left: 950 }} />
+        <img src={Torch} alt="torch1" style={{ position: 'absolute', width: "170px", top: 450, left: 1400 }} />
 
         {/**Puerta */}
         <img src={PuertaImg} alt="puerta_1" style={{ position: 'absolute', top: 143, left: 100, width: "150px" }} />
+        <img src={PuertaImg} alt="puerta_1" style={{ position: 'absolute', top: 465, left: 1300, width: "150px" }} />
 
         {/**Sign */}
         <img src={Sign} alt="sign" style={{ position: 'absolute', top: 50, left: 0, width: "900px" }} />
@@ -496,6 +520,26 @@ const Lobby = () => {
             <img src={EnterLogo} alt="Enter" style={{ width: 80, height: 80, marginBottom: 5 }} />
             <span style={{ fontSize: 22, fontFamily: "'VT323', monospace" }}>
               Presiona 'Enter' para salir de la mansión
+            </span>
+          </div>
+        )}
+
+        {/* Mensaje de interacción para la puerta 2 */}
+        {isNearDoor2 && (
+          <div
+            className={classes.t_tip2}
+            style={{
+              position: 'absolute',
+              left: 1300, // centrado ±
+              top:  280,      // 90 ≈ alto tooltip
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <img src={EnterLogo} alt="Enter" style={{ width: 80, height: 80, marginBottom: 5 }} />
+            <span style={{ fontSize: 20, fontFamily: "'VT323', monospace" }}>
+              Presiona 'Enter' para ir a la siguiente habitación
             </span>
           </div>
         )}

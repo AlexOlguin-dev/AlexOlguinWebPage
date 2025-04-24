@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Game from './Views/Game';
 import Lobby from './Views/Lobby';
+import Ocean from './Views/Ocean';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Game />} />
         <Route path="/lobby" element={<Lobby />} />
+        <Route path="/ocean" element={<Ocean />} />
       </Routes>
     </BrowserRouter>
   );
