@@ -43,7 +43,7 @@ const Lobby = () => {
 
   /*  ======== constantes físicas ========  */
   const GRAVITY       = -1;
-  const JUMP_VELOCITY = 30;
+  const JUMP_VELOCITY = 25;
   const FLOOR_Y       = 0;
   const MOVE_SPEED    = 5;
 
