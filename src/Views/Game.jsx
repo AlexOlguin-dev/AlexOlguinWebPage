@@ -38,7 +38,7 @@ const Game = () => {
   const typedText = useTypewriter(activatedLever ? LEVER_TEXT : '', 15); // 15 ms ≈ 65 cps
 
   const GRAVITY = -1;
-  const JUMP_VELOCITY = 20;
+  const JUMP_VELOCITY = 21;
   const FLOOR_Y = 0;
   const MOVE_SPEED = 5;
 
