@@ -49,20 +49,7 @@ const MobileVersion = () => {
   };
 
   return (
-    <Box
-      onClick={handleJump}
-      sx={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundImage: `url(${cielo})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        overflow: 'auto',
-        position: 'relative',
-      }}
-    >
+    <Box onClick={handleJump} sx={{ height: '100vh', display: 'flex', flexDirection: 'column', backgroundImage: `url(${cielo})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', overflow: 'auto', position: 'relative' }}>
       <AppBar
         position="absolute"
         sx={{
@@ -144,7 +131,7 @@ const MobileVersion = () => {
           <img src={QuestionBox} alt="InfoBox" style={{ width: '50px', height: 'auto' }} />
         </Box>
 
-        <Box style={{ marginTop: -100, paddingTop: 500, backgroundImage: `url(${FondoLobby})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', zIndex: 1 }}>
+        <Box style={{ marginTop: -50, paddingTop: 500, backgroundImage: `url(${FondoLobby})`, backgroundSize: 'cover', backgroundPosition: 'center', width: '100%', zIndex: 1 }}>
           {/* Contenedor relativo para posicionar el ícono JS */}
           <Box style={{ position: 'relative', margin: '0px 60px 30px 10px' }}>
             
