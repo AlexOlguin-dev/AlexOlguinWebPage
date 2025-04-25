@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TranslateIcon from '@mui/icons-material/Translate';
 import IconoPersonalizado from '../assets/img/Icon.png';
 import cielo from '../assets/img/Map/Sky.gif'; // Importando la imagen
 import FloorImg from '../assets/img/mobil/floor.png'; // Importando la imagen del suelo
 import Titulo from '../assets/img/Titulo_mobil.png'; // Importando la imagen del título
 import QuestionBox from '../assets/img/Map/InfoBox.png'; // Importando el icono
+import GostyImg from '../assets/img/MainCharacter/Gosty.png'; // Importando la imagen de Gosty
+import GostyImg2 from '../assets/img/MainCharacter/Gosty_2.png'; // Importando la imagen de Gosty en dirección contraria
 import { Box, AppBar, Toolbar, IconButton } from '@mui/material';
 
 const MobileVersion = () => {
+  const [movingRight, setMovingRight] = useState(true); // Estado para la dirección del movimiento
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMovingRight(prev => !prev); // Cambia la dirección cada 2.5 segundos (puedes ajustar el tiempo)
+    }, 2500); // 2500 ms es el tiempo para cambiar la dirección
+
+    return () => clearInterval(interval); // Limpia el intervalo cuando el componente se desmonta
+  }, []);
+
   return (
     <Box
       sx={{
@@ -70,10 +82,37 @@ const MobileVersion = () => {
         <img src={FloorImg} alt="Suelo" style={{ width: '100%', height: 'auto' }} />
       </Box>
 
+      {/* Personaje Gosty que camina */}
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '150px', // Justo sobre el suelo
+          left: '0',
+          '@keyframes moveGosty': {
+            '0%': {
+              left: '0%',
+            },
+            '50%': {
+              left: '85%',
+            },
+            '100%': {
+              left: '0%',
+            },
+          },
+          animation: 'moveGosty 5s linear infinite', // Aplica la animación
+        }}
+      >
+        <img
+          src={movingRight ? GostyImg : GostyImg2} // Cambia el sprite dependiendo de la dirección
+          alt="Gosty"
+          style={{ width: '50px', height: 'auto' }}
+        />
+      </Box>
+
       {/* Div con el color #271937 y altura de 500px, ubicado justo en el fondo */}
       <Box
         sx={{
-          position: 'absolute', // Asegura que el div esté en una posición absoluta
+          position: 'absolute',
           bottom: -500, // Coloca el div justo al fondo de la pantalla
           left: 0,
           right: 0,
@@ -82,6 +121,7 @@ const MobileVersion = () => {
           width: '100%', // Asegura que el div ocupe todo el ancho disponible
         }}
       >
+        {/* Nuevo div con fondo personalizado que cubre toda la pantalla */}
 
         {/* Nuevo div debajo de la imagen del suelo */}
         <Box
