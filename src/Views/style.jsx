@@ -7,6 +7,12 @@ export const useStyles = makeStyles({
     transition: 'left 0.05s linear',
     imageRendering: 'pixelated',
   },
+  gosty_swim: {
+    width: '50px',
+    height: '50px',
+    transition: 'left 0.05s linear',
+    imageRendering: 'pixelated',
+  },
   main_div: {
     position: 'relative', 
     minHeight: '100vh', 

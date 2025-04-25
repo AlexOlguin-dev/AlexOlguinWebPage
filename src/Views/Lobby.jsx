@@ -44,7 +44,7 @@ const Lobby = () => {
 
   /*  ======== constantes físicas ========  */
   const GRAVITY       = -1;
-  const JUMP_VELOCITY = 22;
+  const JUMP_VELOCITY = 20;
   const FLOOR_Y       = 0;
   const MOVE_SPEED    = 5;
 
@@ -63,9 +63,9 @@ const Lobby = () => {
   };
 
   const DOOR_2 = {
-    x: 1300,
+    x: 1400,
     y: 0,
-    width: 100,
+    width: 50,
     height: 100,
   };
     
