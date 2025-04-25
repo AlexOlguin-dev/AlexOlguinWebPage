@@ -3,7 +3,8 @@ import TranslateIcon from '@mui/icons-material/Translate';
 import IconoPersonalizado from '../assets/img/Icon.png';
 import cielo from '../assets/img/Map/Sky.gif'; // Importando la imagen
 import FloorImg from '../assets/img/mobil/floor.png'; // Importando la imagen del suelo
-import Titulo from '../assets/img/Titulo.png'; // Importando la imagen del título
+import Titulo from '../assets/img/Titulo_mobil.png'; // Importando la imagen del título
+import QuestionBox from '../assets/img/Map/InfoBox.png'; // Importando el icono
 import { Box, AppBar, Toolbar, IconButton } from '@mui/material';
 
 const MobileVersion = () => {
@@ -80,35 +81,45 @@ const MobileVersion = () => {
           height: '500px', // Altura del div
           width: '100%', // Asegura que el div ocupe todo el ancho disponible
         }}
-      />
-
-      {/* Nuevo div debajo de la imagen del suelo */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '600px', // Justo debajo de la imagen del suelo
-          left: 0,
-          right: 0,
-          margin: '30px', // Margen de 5px
-          border: '2px solid #61507A', // Borde de 2px de color #61507A
-          backgroundColor: '#79A4BC', // Fondo de color #79A4BC
-          padding: '10px', // Padding interno para mayor espacio
-        }}
       >
-        <span
-          style={{
-            fontSize: 25,
-            fontFamily: "'VT323', monospace",
-            color: '#DDEAC2', // Color del texto
+
+        {/* Nuevo div debajo de la imagen del suelo */}
+        <Box
+          sx={{
+            margin: '30px', // Margen de 5px
+            border: '2px solid #61507A', // Borde de 2px de color #61507A
+            backgroundColor: '#79A4BC', // Fondo de color #79A4BC
+            padding: '10px', // Padding interno para mayor espacio
           }}
         >
-          ¡Hola! Bienvenidos... Soy Alex Olguín, un desarrollador web con sólida trayectoria,
-          capaz de crear desde sitios livianos hasta plataformas complejas, cubriendo todo el ciclo
-          de vida: análisis, arquitectura, desarrollo full‑stack y despliegue. Este breve portafolio
-          es una muestra de mi habilidad para transformar ideas en soluciones digitales de calidad.
-          Me adapto rápido, aprendo nuevas tecnologías con entusiasmo y colaboro eficazmente para
-          impulsar los objetivos del negocio.
-        </span>
+          <span
+            style={{
+              fontSize: 22,
+              fontFamily: "'VT323', monospace",
+              color: '#DDEAC2', // Color del texto
+            }}
+          >
+            ¡Hola! Bienvenidos... Soy Alex Olguín, un desarrollador web con sólida trayectoria,
+            capaz de crear desde sitios livianos hasta plataformas complejas, cubriendo todo el ciclo
+            de vida: análisis, arquitectura, desarrollo full‑stack y despliegue. Este breve portafolio
+            es una muestra de mi habilidad para transformar ideas en soluciones digitales de calidad.
+            Me adapto rápido, aprendo nuevas tecnologías con entusiasmo y colaboro eficazmente para
+            impulsar los objetivos del negocio.
+          </span>
+        </Box>
+
+        {/* Icono centrado al fondo del div */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '20px', // Ajuste para colocarlo cerca del fondo
+            left: '50%', // Centrado horizontalmente
+            transform: 'translateX(-50%)', // Asegura el centrado exacto
+          }}
+        >
+          <img src={QuestionBox} alt="InfoBox" style={{ width: '50px', height: 'auto' }} />
+        </Box>
+
       </Box>
     </Box>
   );
