@@ -50,6 +50,10 @@ const Ocean = () => {
   const fishRef = useRef({ x: 0, direction: 1 }); // Estado del pez (posición y dirección)
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  },[])
+
+  useEffect(() => {
     const down = (e) => {
       pressedKeys.current.add(e.key);
       if (e.key === ' ') {

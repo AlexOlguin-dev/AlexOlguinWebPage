@@ -66,6 +66,10 @@ const Game = () => {
   };
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+  },[])
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
       pressedKeys.current.add(e.key);
       if (e.key === ' ' && !isJumping) {
