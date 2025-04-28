@@ -342,11 +342,11 @@ const Lobby = () => {
                   <br/>
                   <li>
                     <span style={{ fontSize: 22, fontFamily: "'VT323', monospace", fontWeight: 'bold' }}>
-                      React JS / Next JS:
+                      React JS :
                     </span>
                     <br/>
                     <span style={{ fontSize: 22, fontFamily: "'VT323', monospace" }}>
-                      Construyo interfaces dinámicas con React y uso Next para SSR/SSG y optimización de rutas.
+                      Construyo interfaces dinámicas con React JS para plataformas web altamente interactivas.
                     </span>
                   </li>
                   <br/>
