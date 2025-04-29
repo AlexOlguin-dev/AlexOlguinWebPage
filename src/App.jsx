@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Game from './Views/Game';
 import Lobby from './Views/Lobby';
 import Ocean from './Views/Ocean';
+import Sunset from './Views/Sunset';
 import MobileVersion from './Views/MobileVersion';
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={isMobile ? <MobileVersion /> : <Game />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/ocean" element={<Ocean />} />
+        <Route path="/sunset" element={<Sunset />} />
       </Routes>
     </BrowserRouter>
   );

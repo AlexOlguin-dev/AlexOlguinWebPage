@@ -5,13 +5,14 @@ import '../assets/css/animated_functions.css';
 import { useStyles } from './style';
 import TopBar from './TopBar';
 import GostyImg from '../assets/img/MainCharacter/Gosty_swim.png';
-import FloorImg from '../assets/img/Map/floor2.png';
+import FloorImg from '../assets/img/Map/floor.png';
 import cielo from '../assets/img/Map/ocean.gif';
 import PlatformImg from '../assets/img/Map/platform_2.png';
 import PuertaImg from '../assets/img/Map/puerta.png';
 import EnterLogo from '../assets/img/Instructions/Enter.png';
-import FishImg1 from '../assets/img/Map/fish_1.gif'; // Sprite del pez hacia la derecha
-import FishImg2 from '../assets/img/Map/fish_2.gif'; // Sprite del pez hacia la izquierda
+import FishImg1 from '../assets/img/Map/fish_1.gif';
+import FishImg2 from '../assets/img/Map/fish_2.gif';
+import Portafolio from '../assets/img/Map/portafolio_cartel.png'
 
 const Ocean = () => {
   const classes   = useStyles();
@@ -51,6 +52,7 @@ const Ocean = () => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   },[])
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const Ocean = () => {
         navigate('/lobby');
       }
       if (e.key === 'Enter' && isNearDoor2) {
-        navigate('/');
+        navigate('/sunset');
       }
     };
     const up = (e) => pressedKeys.current.delete(e.key);
@@ -162,6 +164,8 @@ const Ocean = () => {
         
         <img src={GostyImg} alt="Gosty" style={{ position: 'absolute', left: pos.x, bottom: pos.y + 210, zIndex: 9 }} className={`${classes.gosty_swim} floating`} />
 
+        <img src={Portafolio} alt="portafolio_cartel" style={{ position: 'absolute', top: -70, left: "30%", width: 400 }} />
+
         {/* Puerta añadida */}
         <img src={PuertaImg} alt="Puerta" style={{ position: 'absolute', top: 510, left: 50, width: "100px"  }} />
         <img src={PuertaImg} alt="puerta_1" style={{ position: 'absolute', top: 510, left: 1400, width: "100px" }} />
@@ -178,6 +182,7 @@ const Ocean = () => {
           }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onClick={() => window.open('https://chat-room-two-green.vercel.app/', '_blank')} // Abre la página en una nueva pestaña
         >
           {isHovered && (
             <>

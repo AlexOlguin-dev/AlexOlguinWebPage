@@ -63,7 +63,7 @@ const Lobby = () => {
   };
 
   const DOOR_2 = {
-    x: 1400,
+    x: 1300,
     y: 0,
     width: 50,
     height: 100,
@@ -155,6 +155,7 @@ const Lobby = () => {
   /*  ===== bucle de juego (16 ms ≈ 60 fps) ===== */
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     const id = setInterval(() => {
       setPos((p) => {
         let newX = p.x;

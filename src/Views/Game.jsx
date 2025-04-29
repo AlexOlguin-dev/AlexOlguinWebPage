@@ -67,6 +67,7 @@ const Game = () => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
   },[])
 
   useEffect(() => {
@@ -208,7 +209,7 @@ const Game = () => {
       <TopBar />
       {/* ============================== NAVBAR =================================== */}
 
-      <div style={{ position: 'relative', width: '100%', height: '800px', backgroundImage: `url(${cielo})`, backgroundSize: 'cover', overflow: 'hidden', zIndex: 1 }}>
+      <div style={{ position: 'relative', width: '100%', height: 800, backgroundImage: `url(${cielo})`, backgroundSize: 'cover', overflow: 'hidden', zIndex: 1 }}>
 
         {/** Titulo */}
         <img src={Titulo} alt="Titulo" className={classes.titulo} />

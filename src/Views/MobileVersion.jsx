@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Box, AppBar, Toolbar, IconButton } from '@mui/material';
 import TranslateIcon from '@mui/icons-material/Translate';
 import IconoPersonalizado from '../assets/img/Icon.png';
@@ -28,12 +28,21 @@ import MySql from '../assets/img/Lenguajes/mysql.png';
 import Postgre from '../assets/img/Lenguajes/postgres.png';
 import Wampp from '../assets/img/Lenguajes/wampp.png';
 import Xampp from '../assets/img/Lenguajes/xampp.png';
+import mar from '../assets/img/Map/ocean.gif';
+import Platform from '../assets/img/mobil/platform.png';
+import FishImg1 from '../assets/img/Map/fish_1.gif';
+import FishImg2 from '../assets/img/Map/fish_2.gif';
+import sunset from '../assets/img/mobil/sunset.gif';
+import TituloFinal from '../assets/img/Titulo_final.png';
+import { FaWhatsapp } from "react-icons/fa";
 
 const MobileVersion = () => {
   const [position, setPosition] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isJumping, setIsJumping] = useState(false);
   const [jumpHeight, setJumpHeight] = useState(0);
+
+  const fishRef = useRef({ x: 0, direction: 1 });
 
   useEffect(() => {
     const moveSpeed = 2;
@@ -85,6 +94,8 @@ const MobileVersion = () => {
     }
   };
 
+  const fishSprite = fishRef.current.direction === 1 ? FishImg1 : FishImg2;
+
   return (
     <Box
       onClick={handleTap}
@@ -134,7 +145,7 @@ const MobileVersion = () => {
         />
 
         {/* Presentacion */}
-        <Box sx={{ width: '100%', color: 'white', backgroundImage: 'linear-gradient(to bottom, #271937, black)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <Box sx={{ width: '100%', color: 'white', backgroundImage: 'linear-gradient(to bottom, #271937, black)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', paddingBottom: "50px" }}>
           <img src={PlatformImg} alt="Plataforma" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
           <Box style={{ margin: "20px", padding: "10px", backgroundColor: '#73A4BB', color: '#DCEAC4', border: '3px solid #625079', textAlign: 'center' }}>
             <span style={{ fontSize: 22, fontFamily: "'VT323', monospace" }}>
@@ -151,7 +162,12 @@ const MobileVersion = () => {
         </Box>
 
         {/**Lenguajes */}
-        <Box sx={{ width: '100%', backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0,0,0,0) 150px), url(${Fondo2})`, backgroundSize: 'contain', marginTop: -2 }}>
+        <Box sx={{ width: '100%', backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0,0,0,0) 150px), url(${Fondo2})`, backgroundSize: 'contain', marginTop: -2, position: "relative" }}>
+
+          <Box style={{ margin: "20px", padding: "10px", backgroundColor: '#C53946', color: '#DCEAC4', border: '3px solid #EBC250', position: "absolute", top: 30, minWidth: "310px" }}>
+            <span style={{ fontSize: 30, fontFamily: "'VT323', monospace" }}>Lenguajes de Programación</span>
+          </Box>
+
           <Box style={{ position: 'relative' }}>
             <img src={Cartel} alt="Cartel" style={{ width: '60%', height: 'auto', objectFit: 'contain', marginTop: "100px" }} />
             <img src={JS} alt="JavaScript" style={{ width: '20%', height: 'auto', objectFit: 'contain', position: 'absolute', top: '65%', left: '18.5%' }} />
@@ -369,6 +385,58 @@ const MobileVersion = () => {
                 <img src={Wampp} alt="Wamp" style={{ height: 48 }} />
               </div>
             </div>
+          </Box>
+
+          <Box sx={{ width: '100%', color: 'white', backgroundImage: `url(${mar})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', paddingBottom: "100px", position: "relative" }}>
+            <img src={Platform} alt="Plataforma" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+
+            <Box style={{ margin: "20px", padding: "10px", backgroundColor: '#C53946', color: '#DCEAC4', border: '3px solid #EBC250', position: "absolute", top: 40, minWidth: "310px" }}>
+              <span style={{ fontSize: 30, fontFamily: "'VT323', monospace" }}>Portafolio</span>
+            </Box>
+            
+            {/* Pez animado que se mueve de un extremo a otro, con hover */}
+            <div style={{ position: "relative", width: '100px', height: '100px', zIndex: 10, marginLeft: "120px", paddingTop: "150px" }}  onClick={() => window.open('https://chat-room-two-green.vercel.app/', '_blank')}>
+              <img
+                src={require('../assets/img/Map/dialogo.png')}
+                alt="Dialogo"
+                style={{
+                  position: 'absolute',
+                  top: -85, // Ajusta según lo alto que quieras el diálogo
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: 300,
+                }}
+              />
+              <img src={fishSprite} alt="Pez" style={{ width: '100%', height: '100%' }}/>
+            </div>
+            
+          </Box>
+
+          <Box sx={{ width: '100%', color: 'white', backgroundImage: `url(${sunset})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', paddingBottom: "50px", position: "relative" }}>
+            <img src={Platform} alt="Plataforma" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2, position: 'relative' }}>
+              <Box component="img" src={TituloFinal} alt="Título" sx={{ maxWidth: '80%', height: 'auto', mb: 20, mt: 20 }} />
+              <Box style={{ position: 'absolute', top: 240, left: "17%", color: "#DDEAC2" }}>
+                <span style={{ fontSize: 15, fontFamily: "'VT323', monospace" }}>
+                  E-Mail:
+                </span>
+                <br/>
+                <span style={{ fontSize: 23, fontFamily: "'VT323', monospace", fontWeight: "bold" }}>
+                  alex.olguin.erpel@gmail.com
+                </span>
+                <br/>
+                <span style={{ fontSize: 15, fontFamily: "'VT323', monospace" }}>
+                  Whatsapp:
+                </span>
+                <br/>
+                <a href="https://wa.me/56989090514" target="_blank" rel="noopener noreferrer" style={{ color: "#DDEAC2", textDecoration: 'none' }} >
+                  <span style={{ display: "flex", alignItems: "center", fontSize: 30, fontFamily: "'VT323', monospace", fontWeight: "bold", gap: 8 }}>
+                    +56989090514 <FaWhatsapp />
+                  </span>
+                </a>
+              </Box>
+            </Box>
           </Box>
 
         </Box>
