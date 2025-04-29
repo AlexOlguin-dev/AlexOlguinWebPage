@@ -158,7 +158,7 @@ const Sunset = () => {
         <img src={Sign3} alt="Inicio3" onMouseEnter={() => setOnHoverSign3(true)} onMouseLeave={() => setOnHoverSign3(false)} onClick={() => navigate('/ocean')} style={{ position: 'absolute', bottom: 195, left: "65%", width: "10%" }} />
 
         { onHoverSign1 ? (
-          <div style={{ position: 'absolute', bottom: 400, left: "26%", width: "100px", height: "60px", backgroundColor: "#E8AA6B", color: "#fff", border: '4px solid #000', padding: "10px", textAlign: "center" }}>
+          <div style={{ position: 'absolute', bottom: 430, left: "26.5%", width: "100px", height: "60px", backgroundColor: "#E8AA6B", color: "#fff", border: '4px solid #000', padding: "10px", textAlign: "center" }}>
             <span style={{ fontSize: 30, fontFamily: "'VT323', monospace" }}>
               Viaja al inicio
             </span>
@@ -166,7 +166,7 @@ const Sunset = () => {
         ) : null}
 
         { onHoverSign2 ? (
-          <div style={{ position: 'absolute', bottom: 400, left: "43%", width: "200px", height: "100px", backgroundColor: "#E8AA6B", color: "#fff", border: '4px solid #000', padding: "10px", textAlign: "center" }}>
+          <div style={{ position: 'absolute', bottom: 430, left: "44%", width: "200px", height: "100px", backgroundColor: "#E8AA6B", color: "#fff", border: '4px solid #000', padding: "10px", textAlign: "center" }}>
             <span style={{ fontSize: 30, fontFamily: "'VT323', monospace" }}>
               Viaja a Lenguajes de programación
             </span>
@@ -174,7 +174,7 @@ const Sunset = () => {
         ) : null}
 
         { onHoverSign3 ? (
-          <div style={{ position: 'absolute', bottom: 400, left: "63%", width: "200px", height: "60px", backgroundColor: "#E8AA6B", color: "#fff", border: '4px solid #000', padding: "10px", textAlign: "center" }}>
+          <div style={{ position: 'absolute', bottom: 430, left: "64%", width: "200px", height: "60px", backgroundColor: "#E8AA6B", color: "#fff", border: '4px solid #000', padding: "10px", textAlign: "center" }}>
             <span style={{ fontSize: 30, fontFamily: "'VT323', monospace" }}>
               Viaja a Portafolio
             </span>
