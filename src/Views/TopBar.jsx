@@ -11,9 +11,9 @@ const TopBar = () => {
     <div className={classes.navbar}>
       <img src={IconoPersonalizado} alt="Icono" style={{ width: '40px', height: '40px', objectFit: 'contain' }}/>
       <div style={{ width: "100px" }}>
-        <IconButton edge="start" color="inherit" aria-label="translate">
+        {/*<IconButton edge="start" color="inherit" aria-label="translate">
           <TranslateIcon style={{ color: "#fff" }} />
-        </IconButton>
+        </IconButton>*/}
       </div>
     </div>
   )
