@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/animated_functions.css';
 import { useStyles } from './style';
@@ -13,6 +13,7 @@ import Sign3 from '../assets/img/Map/sign_3.png';
 import final_sign from '../assets/img/Map/final_sign.png';
 import Titulo from '../assets/img/Titulo_final.png';
 import { FaWhatsapp } from "react-icons/fa";
+import { SFXContext } from './SFXContext';
 
 const Sunset = () => {
   const classes   = useStyles();
@@ -22,6 +23,8 @@ const Sunset = () => {
   const [onHoverSign1, setOnHoverSign1] = useState(false);
   const [onHoverSign2, setOnHoverSign2] = useState(false);
   const [onHoverSign3, setOnHoverSign3] = useState(false);
+
+  const { playJumpSound } = useContext(SFXContext);
 
   /*  ======== constantes físicas ========  */
   const GRAVITY       = -1;
@@ -43,6 +46,8 @@ const Sunset = () => {
       if (e.key === ' ' && !isJumping) {
         velYRef.current = JUMP_VELOCITY;
         setJump(true);
+        // Reproducir sonido de salto
+        playJumpSound();
       }
     };
     const up = (e) => pressedKeys.current.delete(e.key);

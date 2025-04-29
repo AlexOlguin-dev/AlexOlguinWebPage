@@ -1,5 +1,5 @@
 // src/pages/Lobby.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/animated_functions.css';
 import { useStyles } from './style';
@@ -32,6 +32,7 @@ import Nginx from '../assets/img/Lenguajes/ngnex.png';
 import Postgre from '../assets/img/Lenguajes/postgres.png';
 import Wampp from '../assets/img/Lenguajes/wampp.png';
 import Xampp from '../assets/img/Lenguajes/xampp.png';
+import { SFXContext } from './SFXContext';
 
 const Lobby = () => {
   const classes   = useStyles();
@@ -41,6 +42,8 @@ const Lobby = () => {
   const [isNearDoor, setNearDoor] = useState(false);
   const [isNearDoor2, setNearDoor2] = useState(false);
   const [activeIcon, setActiveIcon] = useState(null);
+
+  const { playJumpSound } = useContext(SFXContext);
 
   /*  ======== constantes físicas ========  */
   const GRAVITY       = -1;
@@ -134,6 +137,8 @@ const Lobby = () => {
       if (e.key === ' ' && !isJumping) {
         velYRef.current = JUMP_VELOCITY;
         setJump(true);
+        // Reproducir sonido de salto
+        playJumpSound();
       }
       if (e.key === 'Enter' && isNearDoor) {
         navigate('/');

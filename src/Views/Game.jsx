@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/animated_functions.css';
 import { useStyles } from "./style";
@@ -14,6 +14,7 @@ import Palanca2 from '../assets/img/Map/Palanca2.png';
 import Navegacion from '../assets/img/Map/Navegacion.png';
 import Titulo from '../assets/img/Titulo.png';
 import QuestionBox from '../assets/img/Map/InfoBox.png';
+import { SFXContext } from './SFXContext';
 
 const LEVER_TEXT = `
 ¡Hola! Bienvenidos... Soy Alex Olguín, un desarrollador web con sólida trayectoria, 
@@ -32,6 +33,8 @@ const Game = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [activatedLever, setActivatedLever] = useState(false);
   const [showMansionTip, setShowMansionTip] = useState(false);
+
+  const { playJumpSound } = useContext(SFXContext);
 
   const velocityYRef = useRef(0);
   const pressedKeys = useRef(new Set());
@@ -76,6 +79,8 @@ const Game = () => {
       if (e.key === ' ' && !isJumping) {
         velocityYRef.current = JUMP_VELOCITY;
         setIsJumping(true);
+        // Reproducir sonido de salto
+        playJumpSound();
       }
       // Activar palanca
       if (e.key === 'Enter' && !activatedLever && showTooltip) {

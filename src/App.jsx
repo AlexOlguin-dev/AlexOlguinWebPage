@@ -5,6 +5,8 @@ import Lobby from './Views/Lobby';
 import Ocean from './Views/Ocean';
 import Sunset from './Views/Sunset';
 import MobileVersion from './Views/MobileVersion';
+import { MusicProvider } from './Views/MusicContext.js';
+import { SFXProvider } from './Views/SFXContext.js';
 import './App.css';
 
 function isMobileDevice() {
@@ -20,14 +22,18 @@ function App() {
   const isMobile = isMobileDevice();
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={isMobile ? <MobileVersion /> : <Game />} />
-        <Route path="/lobby" element={<Lobby />} />
-        <Route path="/ocean" element={<Ocean />} />
-        <Route path="/sunset" element={<Sunset />} />
-      </Routes>
-    </BrowserRouter>
+    <MusicProvider>
+      <SFXProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={isMobile ? <MobileVersion /> : <Game />} />
+            <Route path="/lobby" element={<Lobby />} />
+            <Route path="/ocean" element={<Ocean />} />
+            <Route path="/sunset" element={<Sunset />} />
+          </Routes>
+        </BrowserRouter>
+      </SFXProvider>
+    </MusicProvider>
   );
 }
 

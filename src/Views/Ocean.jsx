@@ -1,5 +1,5 @@
 // src/pages/Lobby.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/animated_functions.css';
 import { useStyles } from './style';
@@ -12,7 +12,8 @@ import PuertaImg from '../assets/img/Map/puerta.png';
 import EnterLogo from '../assets/img/Instructions/Enter.png';
 import FishImg1 from '../assets/img/Map/fish_1.gif';
 import FishImg2 from '../assets/img/Map/fish_2.gif';
-import Portafolio from '../assets/img/Map/portafolio_cartel.png'
+import Portafolio from '../assets/img/Map/portafolio_cartel.png';
+import { SFXContext } from './SFXContext';
 
 const Ocean = () => {
   const classes   = useStyles();
@@ -21,6 +22,8 @@ const Ocean = () => {
   const [isNearDoor, setNearDoor] = useState(false);
   const [isNearDoor2, setNearDoor2] = useState(false);
   const [isHovered, setIsHovered] = useState(false); // Estado para controlar el hover
+
+  const { playJumpSound } = useContext(SFXContext);
 
   const GRAVITY       = -0.03;
   const JUMP_VELOCITY = 2;
@@ -60,6 +63,8 @@ const Ocean = () => {
       pressedKeys.current.add(e.key);
       if (e.key === ' ') {
         velYRef.current = JUMP_VELOCITY;
+        // Reproducir sonido de salto
+        playJumpSound();
       }
       if (e.key === 'Enter' && isNearDoor) {
         navigate('/lobby');
