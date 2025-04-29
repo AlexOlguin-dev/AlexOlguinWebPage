@@ -13,6 +13,7 @@ import EnterLogo from '../assets/img/Instructions/Enter.png';
 import FishImg1 from '../assets/img/Map/fish_1.gif';
 import FishImg2 from '../assets/img/Map/fish_2.gif';
 import Portafolio from '../assets/img/Map/portafolio_cartel.png';
+import sign from '../assets/img/Map/sign_final.png';
 import { SFXContext } from './SFXContext';
 
 const Ocean = () => {
@@ -166,6 +167,13 @@ const Ocean = () => {
       <div style={{ position: 'relative', width: '100%', height: 800, backgroundImage: `url(${cielo})`, backgroundSize: 'cover', overflow: 'hidden' }}>
 
         <img src={FloorImg} alt="Floor" className={classes.suelo} />
+
+        <img src={sign} alt="sign" style={{ width: "300px", position: 'absolute', top: 0, left: 870 }} />
+        <div style={{ width: "250px", position: 'absolute', top: 40, left: 905 }}>
+          <span style={{ fontSize: 25, fontFamily: "'VT323', monospace" }}>
+            Mueve el mouse sobre un pez y explora los proyectos que tengo.
+          </span>
+        </div>
         
         <img src={GostyImg} alt="Gosty" style={{ position: 'absolute', left: pos.x, bottom: pos.y + 210, zIndex: 9 }} className={`${classes.gosty_swim} floating`} />
 
